@@ -127,6 +127,15 @@
         if(raw && raw!==lastRaw){lastRaw=raw;songEl.style.textShadow='0 0 16px rgba(255,255,255,.18),0 0 24px rgba(255,42,163,.45)';setTimeout(()=>songEl.style.textShadow='none',900);}
       }catch(e){songEl.textContent=LANG[getLang()].unavailable;artistEl.textContent='';showStatus(LANG[getLang()].retry);}
     }
+    window.addEventListener('rfm:station-change', async e=>{
+      const id=e.detail?.id;
+      if(!STATIONS.some(s=>s.id===id)) return;
+      currentId=id; localStorage.setItem('rfm_station',id);
+      updateStationVisual();
+      stationMenu.querySelectorAll('.rfm-float-option').forEach(b=>b.classList.toggle('active',b.dataset.id===id));
+      await fetchNP();
+    });
+
     function syncPlayState(){setPaused(audio.paused);}
     function applyLang(lang){const l=LANG[lang]||LANG.es;kickerEl.textContent=l.now;playBtn.setAttribute('aria-label',audio.paused?l.play:l.pause);dock.querySelector('.rfm-float-brand-copy small').textContent=l.live;openBtn.setAttribute('aria-label',l.open);refreshBtn.setAttribute('aria-label',l.refresh);if(!artistEl.textContent || /Cargando|Loading|Carregando/.test(songEl.textContent)) songEl.textContent=l.loading;}
 
