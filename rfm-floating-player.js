@@ -12,7 +12,9 @@
     {id:'hotters',name:'Power Hits',stream:'https://listen.181fm.com/181-power_128k.mp3',group:'Modern'},
     {id:'power2',name:'PowerFM 2',stream:'https://listen.181fm.com/181-powerexplicit_128k.mp3',group:'Modern'},
     {id:'RFMLCOM',name:'RhythmFM Latino',stream:'https://stream.zeno.fm/eq0taliilt5tv',group:'RFM',noMeta:true},
-    {id:'kissfmfr',name:'KISS FM France 🇫🇷',stream:'https://kissfm.ice.infomaniak.ch/kissfm-128.mp3',group:'France'}
+    {id:'kissfmfr',name:'KISS FM France 🇫🇷',stream:'https://kissfm.ice.infomaniak.ch/kissfm-128.mp3',group:'France'},
+    {id:'antena1br',name:'Antena 1 Brasil 🇧🇷 · 94.7 FM',stream:'https://antenaone.crossradio.com.br/stream/1',group:'Brasil'},
+    {id:'metropolitana',name:'Metropolitana FM 🇧🇷 · 98.5 FM',stream:'https://ice.fabricahost.com.br/metropolitana985sp',group:'Brasil'}
   ];
 
   const LANG={
@@ -29,7 +31,7 @@
     if(document.querySelector('.rfm-float-player')) return;
     const existing=document.getElementById('player');
     const audio=existing || Object.assign(document.createElement('audio'),{autoplay:true,playsInline:true});
-    if(!existing){audio.className='rfm-float-hidden-audio';audio.setAttribute('aria-hidden','true');audio.crossOrigin='anonymous';document.body.appendChild(audio);}
+    if(!existing){audio.className='rfm-float-hidden-audio';audio.setAttribute('aria-hidden','true');document.body.appendChild(audio);}
 
     const dock=document.createElement('div');
     dock.className='rfm-float-player';
